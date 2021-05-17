@@ -16,11 +16,11 @@
 //   "file:///C:/Users/pegas/Programming/my-own-projects/dblectures/files/dec7.srt"
 // );
 var input;
-var openFile = function(event) {
+var openFile = function (event) {
   input = event.target;
 
   var reader = new FileReader();
-  reader.onload = function() {
+  reader.onload = function () {
     var text = reader.result.replace(/[0-9,:,-->,\n]/g, "");
     var node = document.getElementById("output");
     node.innerText = text;
@@ -28,13 +28,17 @@ var openFile = function(event) {
   reader.readAsText(input.files[0]);
 };
 
-var trim = function() {
+var trim = function () {
   var getContent = document.getElementById("output");
+  newContent = document
+    .getElementById("output")
+    .innerText.replace(/\n\n/g, " ");
 
-  newContent = getContent.textContent.replace(/[0-9,:,-->,\n]/g, "");
+  // newContent = getContent.textContent.replace(/[0-9,:,-->,\n]/g, "");
   var filename = document.getElementsByClassName("filename")[0];
   filename.innerHTML = input.value;
   filename.style.fontWeight = "bolder";
+  console.log("==", newContent);
 
   getContent.innerHTML = newContent;
 };
